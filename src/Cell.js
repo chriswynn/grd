@@ -2,23 +2,29 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const CellContainer = styled.div`
-  border: 1px solid #f1f1f1;
+  border: .03px solid #f1f1f1;
   background-color: ${props => props.fill};
   &:hover {
-    background: black;
+    background: rgba(0, 0, 0, 0.4);
   }
 `
 
 class Cell extends Component {
   state = {
-    fillColor: '#FFF'
+    fillColor: 'rgba(0, 0, 0, 0)'
   }
 
-  handleClick = (e) => this.setState({fillColor: this.props.activeColor})
+  handleClick = (e) => {
+    if(e.button === 0) {
+      this.setState({fillColor: this.props.activeColor})
+    } else if(e.button === 2) {
+      this.setState({fillColor: '#FFF'})
+    }
+  }
 
   render() {
     return (
-      <CellContainer fill={this.state.fillColor} onClick={this.handleClick.bind(this)}>
+      <CellContainer fill={this.state.fillColor} onClick={this.handleClick.bind(this)} onContextMenu={this.handleClick.bind(this)}>
       </CellContainer>
     )
   }
