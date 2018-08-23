@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Cell from './Cell'
 
 const GrdContainer = styled.div`
   align-items: center;
@@ -17,18 +18,11 @@ const Grd = styled.div`
   width: 50vw;
 `
 
-const Cell = styled.div`
-  border: 1px solid #f1f1f1;
-  &:hover {
-    background: black;
-  }
-`
-
 class Grid extends Component {
   createCells = () => {
     let cells = []
     for(let i = 0; i < this.props.cellSize * this.props.cellSize; i++) {
-      cells.push(<Cell key={i}></Cell>)
+      cells.push(<Cell activeColor={this.props.activeColor} key={i}></Cell>)
     }
     return cells
   }

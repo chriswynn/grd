@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Grid cellSize={16}/>
+        <Grid activeColor="#000" cellSize={16}/>
       </div>
     );
   }
