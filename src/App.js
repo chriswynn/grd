@@ -13,6 +13,12 @@ injectGlobal`
 `
 
 class App extends Component {
+  componentDidMount() {
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault()
+    }, false)
+  }
+
   render() {
     return (
       <div className="App">
