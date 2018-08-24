@@ -19,10 +19,26 @@ const Grd = styled.div`
 `
 
 class Grid extends Component {
+  state = {
+    down: false
+  }
+
+  mouseUp = (e) => {
+    this.setState({
+      down: false
+    })
+  }
+
+  mouseDown = (e) => {
+    this.setState({
+      down: true
+    })
+  }
+
   createCells = () => {
     let cells = []
     for(let i = 0; i < this.props.cellSize * this.props.cellSize; i++) {
-      cells.push(<Cell activeColor={this.props.activeColor} key={i}></Cell>)
+      cells.push(<Cell activeColor={this.props.activeColor} down={this.state.down} key={i}></Cell>)
     }
     return cells
   }
@@ -30,7 +46,7 @@ class Grid extends Component {
   render() {
     return (
       <GrdContainer>
-        <Grd cellCount={this.props.cellSize}>
+        <Grd onMouseDown={this.mouseDown.bind(this)} onMouseUp={this.mouseUp.bind(this)} cellCount={this.props.cellSize}>
           {this.createCells()}
         </Grd>
       </GrdContainer>

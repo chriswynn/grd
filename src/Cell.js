@@ -14,6 +14,12 @@ class Cell extends Component {
     fillColor: 'rgba(0, 0, 0, 0)'
   }
 
+  mouseEnter = (e) => {
+    if(this.props.down) {
+      this.setState({fillColor: this.props.activeColor})
+    }
+  }
+
   handleClick = (e) => {
     if(e.button === 0) {
       this.setState({fillColor: this.props.activeColor})
@@ -24,7 +30,7 @@ class Cell extends Component {
 
   render() {
     return (
-      <CellContainer fill={this.state.fillColor} onClick={this.handleClick.bind(this)} onContextMenu={this.handleClick.bind(this)}>
+      <CellContainer fill={this.state.fillColor} onClick={this.handleClick.bind(this)} onMouseEnter={this.mouseEnter.bind(this)} onContextMenu={this.handleClick.bind(this)}>
       </CellContainer>
     )
   }
