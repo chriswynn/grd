@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { injectGlobal } from 'styled-components'
 import Grid from './Grid'
+import Picker from './Picker'
 
 injectGlobal`
   * {
@@ -13,6 +14,16 @@ injectGlobal`
 `
 
 class App extends Component {
+  state = {
+    activeColor: '#000'
+  }
+
+  setActiveColor = (color) => {
+    this.setState({
+      activeColor: color
+    })
+  }
+
   componentDidMount() {
     document.addEventListener('contextmenu', (e) => {
       e.preventDefault()
@@ -22,7 +33,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Grid activeColor="#000" cellSize={16}/>
+        <Grid activeColor={this.state.activeColor} cellSize={16}/>
+        <Picker setActiveColor={this.setActiveColor.bind(this)}/>
       </div>
     );
   }
